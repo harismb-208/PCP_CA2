@@ -35,6 +35,7 @@ export const AppProvider = ({ children }) => {
 
             } catch (err) {
                 console.log("API ERROR:", err);
+                console.log("TOKEN:", token);
             }
         };
 
