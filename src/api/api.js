@@ -2,22 +2,21 @@ import axios from "axios";
 
 const BASE_URL = "https://t4e-testserver.onrender.com/api";
 
-// ✅ Get Token
+
 export const fetchToken = async (password) => {
-    const response = await axios.post(
-        "https://t4e-testserver.onrender.com/api/auth",
-        { password }
-    );
+    const response = await axios.post(`${BASE_URL}/login`, {
+        password,
+    });
 
     console.log("TOKEN RESPONSE:", response.data);
 
     return response.data.token;
 };
 
-// ✅ Get Activities (CORRECT ENDPOINT)
+
 export const fetchActivities = async (token) => {
     const response = await axios.get(
-        "https://t4e-testserver.onrender.com/api/activities",
+        `${BASE_URL}/private/activities`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
