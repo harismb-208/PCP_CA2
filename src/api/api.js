@@ -8,7 +8,7 @@ export const fetchToken = async () => {
         "https://t4e-testserver.onrender.com/api/login",
         {
             studentId: "E0123031",
-            set: "B",             // 🔥 EXACT FORMAT
+            set: "B",
             password: "896201"
         }
     );
