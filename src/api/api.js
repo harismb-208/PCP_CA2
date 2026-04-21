@@ -8,10 +8,9 @@ export const fetchToken = async () => {
     const response = await axios.post(
 
         "https://t4e-testserver.onrender.com/api/login",
-
         {
 
-            password: "896201"   // 🔥 HARDCODE EXACTLY
+            password: "896201"
 
         }
 
