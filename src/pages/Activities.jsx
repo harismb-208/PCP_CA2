@@ -6,7 +6,7 @@ const Activities = () => {
 
     const { state } = useContext(AppContext);
 
-    const validActivities = state.activities.filter(a =>
+    const validActivities = (state.activities || []).filter(a =>
         a.steps > 0 &&
         a.caloriesBurned > 0 &&
         a.workoutMinutes > 0 &&
