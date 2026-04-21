@@ -3,22 +3,31 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const ActivityDetail = () => {
-
     const { id } = useParams();
     const { state } = useContext(AppContext);
 
-    const activity = state.activities.find(a => a.activityId == id);
+    if (!state.activities.length) {
+        return <p>Loading...</p>;
+    }
 
-    if (!activity) return <p>Activity not found</p>;
+    const activity = state.activities.find(
+        (a) => String(a.activityId) === id
+    );
+
+    if (!activity) {
+        return <p>Activity not found</p>;
+    }
 
     const efficiency =
-        activity.workoutMinutes === 0
-            ? 0
-            : activity.caloriesBurned / activity.workoutMinutes;
+        activity.workoutMinutes > 0
+            ? activity.caloriesBurned / activity.workoutMinutes
+            : 0;
 
     return (
         <div>
             <h2>{activity.name}</h2>
+            <p>Steps: {activity.steps}</p>
+            <p>Calories: {activity.caloriesBurned}</p>
             <p>Efficiency: {efficiency}</p>
         </div>
     );
