@@ -1,38 +1,34 @@
+import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import ActivityItem from "../components/ActivityItem";
 
-const Activities = () => {
+const ActivityDetail = () => {
+    const { id } = useParams();
     const { state } = useContext(AppContext);
 
-
-    const activities = Array.isArray(state.activities)
-        ? state.activities
-        : [];
-
-
-    const validActivities = activities.filter((a) =>
-        a &&
-        a.steps > 0 &&
-        a.caloriesBurned > 0 &&
-        a.workoutMinutes > 0 &&
-        typeof a.goalAchieved === "boolean"
+    const activity = state.activities.find(
+        (a) => String(a.activityId) === id
     );
 
-    if (!activities.length) {
-        return <p>Loading...</p>;
+    if (!activity) {
+        return <p>Activity not found</p>;
     }
+
+    const efficiency =
+        activity.workoutMinutes > 0
+            ? activity.caloriesBurned /
+            activity.workoutMinutes
+            : 0;
 
     return (
         <div>
-            {validActivities.map((activity) => (
-                <ActivityItem
-                    key={activity.activityId}
-                    activity={activity}
-                />
-            ))}
+            <h2>{activity.name}</h2>
+            <p>Steps: {activity.steps}</p>
+            <p>Calories: {activity.caloriesBurned}</p>
+            <p>Minutes: {activity.workoutMinutes}</p>
+            <p>Efficiency: {efficiency}</p>
         </div>
     );
 };
 
-export default Activities;
+export default ActivityDetail;
