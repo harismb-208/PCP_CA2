@@ -14,41 +14,31 @@ export const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     useEffect(() => {
-
         const loadData = async () => {
-
             try {
-
                 const token = await fetchToken("896201");
-
                 const res = await fetchActivities(token);
 
-                // 🔥 CRITICAL FIX
+                console.log("API RESPONSE FULL:", JSON.stringify(res, null, 2));
 
-                console.log("API RESPONSE:", res);
-
+                // 🔥 CORRECT EXTRACTION
                 const activitiesData =
-
-                    res.activities || res.data || res;
+                    res?.data?.activities ||
+                    res?.activities ||
+                    res?.data ||
+                    [];
 
                 dispatch({
-
                     type: "SET_DATA",
-
                     payload: activitiesData
-
                 });
 
             } catch (err) {
-
                 console.log("API ERROR:", err);
-
             }
-
         };
 
         loadData();
-
     }, []);
 
     return (
