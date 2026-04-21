@@ -18,30 +18,27 @@ export const AppProvider = ({ children }) => {
             try {
                 const token = await fetchToken("896201");
 
+                console.log("TOKEN:", token);
+
+                if (!token) {
+                    console.log("NO TOKEN RECEIVED");
+                    return;
+                }
+
                 const res = await fetchActivities(token);
-
-                console.log("API FULL:", JSON.stringify(res, null, 2));
-
-                const activitiesData =
-                    res?.data?.activities ||
-                    res?.activities ||
-                    res?.data ||
-                    [];
 
                 dispatch({
                     type: "SET_DATA",
-                    payload: activitiesData
+                    payload: res
                 });
 
             } catch (err) {
                 console.log("API ERROR:", err);
-                console.log("TOKEN:", token);
             }
         };
 
         loadData();
     }, []);
-
     return (
         <AppContext.Provider value={{ state, dispatch }}>
             {children}
