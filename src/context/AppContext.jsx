@@ -20,9 +20,8 @@ export const AppProvider = ({ children }) => {
 
                 const res = await fetchActivities(token);
 
-                console.log("API RESPONSE FULL:", res);
+                console.log("API FULL:", JSON.stringify(res, null, 2));
 
-                // 🔥 ONLY ONE EXTRACTION
                 const activitiesData =
                     res?.data?.activities ||
                     res?.activities ||
