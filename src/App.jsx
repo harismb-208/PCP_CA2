@@ -8,6 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Activities />} />
         <Route path="/activities" element={<Activities />} />
         <Route path="/activities/:id" element={<ActivityDetail />} />
         <Route path="/filter" element={<Filter />} />
