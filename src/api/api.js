@@ -4,35 +4,22 @@ const BASE_URL = "https://t4e-testserver.onrender.com/api";
 
 
 export const fetchToken = async () => {
-
     const response = await axios.post(
-
         "https://t4e-testserver.onrender.com/api/login",
-
         {
-
-            studentId: "e0123031",
-
-            set: "setB",
-
+            studentId: "E0123031",
+            set: "B",             // 🔥 EXACT FORMAT
             password: "896201"
-
         }
-
     );
 
-    console.log("LOGIN RESPONSE:", response.data);
+    console.log("LOGIN RESPONSE FULL:", JSON.stringify(response.data, null, 2));
 
     return (
-
         response.data.token ||
-
         response.data.accessToken ||
-
         response.data.data?.token
-
     );
-
 };
 export const fetchActivities = async (token) => {
     const response = await axios.get(
