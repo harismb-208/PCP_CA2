@@ -16,7 +16,7 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         const loadData = async () => {
             try {
-                const token = await fetchToken("896201");
+                const token = await fetchToken();
 
                 console.log("TOKEN:", token);
 

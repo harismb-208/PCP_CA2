@@ -3,16 +3,32 @@ import axios from "axios";
 const BASE_URL = "https://t4e-testserver.onrender.com/api";
 
 
-export const fetchToken = async (password) => {
+export const fetchToken = async () => {
+
     const response = await axios.post(
+
         "https://t4e-testserver.onrender.com/api/login",
-        { password }
+
+        {
+
+            password: "896201"   // 🔥 HARDCODE EXACTLY
+
+        }
+
     );
 
-    console.log("TOKEN RESPONSE FULL:", response.data);
+    console.log("LOGIN RESPONSE:", response.data);
 
+    return (
 
-    return response.data.token || response.data.accessToken;
+        response.data.token ||
+
+        response.data.accessToken ||
+
+        response.data.data?.token
+
+    );
+
 };
 
 
