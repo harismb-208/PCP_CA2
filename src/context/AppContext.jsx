@@ -17,11 +17,12 @@ export const AppProvider = ({ children }) => {
         const loadData = async () => {
             try {
                 const token = await fetchToken("896201");
+
                 const res = await fetchActivities(token);
 
-                console.log("API RESPONSE FULL:", JSON.stringify(res, null, 2));
+                console.log("API RESPONSE FULL:", res);
 
-                // 🔥 CORRECT EXTRACTION
+                // 🔥 ONLY ONE EXTRACTION
                 const activitiesData =
                     res?.data?.activities ||
                     res?.activities ||
