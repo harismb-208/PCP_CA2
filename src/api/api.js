@@ -8,7 +8,12 @@ export const fetchToken = async () => {
     const response = await axios.post(
 
         "https://t4e-testserver.onrender.com/api/login",
+
         {
+
+            studentId: "e0123031",
+
+            set: "setB",
 
             password: "896201"
 
@@ -29,8 +34,6 @@ export const fetchToken = async () => {
     );
 
 };
-
-
 export const fetchActivities = async (token) => {
     const response = await axios.get(
         "https://t4e-testserver.onrender.com/api/private/activities",
